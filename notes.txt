@@ -1,0 +1,26 @@
+R --no-save --no-restore
+
+install.packages("/Users/ianona/Desktop/SingularityProject/VirVarSeq/R/packages/rmgt_0.9.001.tar.gz",repos=NULL,lib="/Users/ianona/Desktop/SingularityProject/VirVarSeq/R/lib",type="source")
+
+install.packages("/R/packages/rmgt_0.9.001.tar.gz",lib="/R/lib")
+
+
+R CMD INSTALL rmgt_0.9.001.tar.gz
+
+export PERL5LIB=/Users/ianona/Desktop/SingularityProject/VirVarSeq/lib
+export R_LIBS_USER=/Users/ianona/Desktop/SingularityProject/VirVarSeq/R/lib
+export PATH=$PATH:/Users/ianona/Downloads/bwa-0.7.17
+
+perl -MCPAN -e shell
+install Statistics::Basic
+install File::Temp
+install IO:File
+
+lofreq call -f hxb2.fasta -o variants.vcf bowtie-1mil-output-sorted.bam
+lofreq call -f hxb2.fasta -o variants2.vcf hivalns_1mil.sorted.bam
+
+lofreq.sh hxb2.fasta bowtie-1mil-output-sorted.bam
+
+perl map_vs_ref.pl --samplelist testdata/samples2.txt --ref testdata/ref2 --indir testdata/fastq/test --outdir testdata/results/
+
+perl consensus.pl --samplelist testdata/samples2.txt --ref testdata/ref2 --outdir testdata/results/ --start 3112 --end 5531

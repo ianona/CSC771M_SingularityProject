@@ -1,0 +1,27 @@
+Bootstrap: docker
+From: ubuntu:18.04
+
+%help
+	This is where you can add some helpful info
+
+%files
+	newSample1mil.fastq.gz
+	newSample1mil.fastq.gz /data
+	hxb2.fasta
+	hxb2.fasta /data
+	container.py
+	container.py /data
+
+%labels
+	CREATOR Bioinfo
+
+%post
+	echo "Installing Python..."
+	apt-get -qq -y update
+	apt-get -qq -y install python > /dev/null
+
+	echo "Pulling GIT files"
+	git clone https://github.com/ianona/CSC771M_SingularityProject.git
+
+%runscript
+	python /container.py
