@@ -23,6 +23,8 @@ From: ubuntu:18.04
 
 	echo "Pulling GIT files"
 	git clone https://github.com/ianona/CSC771M_SingularityProject.git
+	cd CSC771M_SingularityProject
+	cp Lofreq/lofreq /usr/local/bin/lofreq
 
 %runscript
 	python /CSC771M_SingularityProject/container.py

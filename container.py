@@ -9,29 +9,30 @@ os.chdir(dname)
 # subprocess.call(["chmod +x lofreq.sh"])
 
 def main(ref,que):
-	print("---Pipeling start---")
-	print("---Starting sequence alignment---")
-	print("WORKIGN DIRECTORY: "+os.getcwd())
+    print("---Pipeling start---")
+    print("---Starting sequence alignment---")
+    print("WORKIGN DIRECTORY: "+os.getcwd())
 
-	queryFileName = que.split("/")[-1].split(".")[0]
-	sortedbam = "sorted_"+queryFileName+".bam"
+    queryFileName = que.split("/")[-1].split(".")[0]
+    sortedbam = "sorted"+queryFileName+".bam"
 
-	if choice1 == "1":
-		print("Calling Bowtie aligner...")
-		subprocess.check_call([os.getcwd()+'Bowtie/bowtiescript.sh', ref, que])
-	elif choice1 == "2":
-	        print("Calling Last aligner...")
-                subprocess.check_call([os.getcwd()+ 'Last/lastscript.sh', ref, que])
-	print("---Alignment finished---")
-	print("---Starting variant caller---")
+    if choice1 == "1":
+        print("Calling Bowtie aligner...")
+        subprocess.check_call([os.getcwd()+'/Bowtie/bowtiescript.sh', ref, que])
+    elif choice1 == "2":
+        print("Calling Last aligner...")
+        subprocess.check_call([os.getcwd()+ '/Last/lastscript.sh', ref, que])
 
-	if choice2 == "1":
-		print("Calling Lofreq...")
-		subprocess.check_call([os.getcwd()+'Lofreq/lofreq.sh', ref, sortedbam])
-	elif choice2 == "2":
-		print("Calling VirVarSeq...")
+    print("---Alignment finished---")
+    print("---Starting variant caller---")
 
-	print("Pipeline finished!")
+    if choice2 == "1":
+        print("Calling Lofreq...")
+        subprocess.check_call([os.getcwd()+'/Lofreq/lofreq.sh', ref, sortedbam])
+    elif choice2 == "2":
+        print("Calling VirVarSeq...")
+
+    print("Pipeline finished!")
 
 root = tk.Tk()
 root.withdraw()
@@ -52,6 +53,6 @@ print("Choose your variant caller")
 choice2 = input("Input 1 for Lofreq, 2 for VirVarSeq\n")
 
 if (choice1 != "1" and choice1 != "2") or (choice2 != "1" and choice2 != "2"):
-	print("Invalid input! Program terminating...")
+    print("Invalid input! Program terminating...")
 else:
-	main(reference_path,query_path)
+    main(reference_path,query_path)
