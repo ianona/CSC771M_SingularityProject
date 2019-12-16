@@ -17,11 +17,12 @@ From: ubuntu:18.04
 
 %post
 	echo "Installing Python..."
-	apt-get -qq -y update
-	apt-get -qq -y install python > /dev/null
+	apt-get -y update
+	apt-get -y install git python3 python3-pip python3-tk g++ libz-dev bowtie2 samtools last-align
+	pip3 install tk
 
 	echo "Pulling GIT files"
 	git clone https://github.com/ianona/CSC771M_SingularityProject.git
 
 %runscript
-	python /container.py
+	python /CSC771M_SingularityProject/container.py

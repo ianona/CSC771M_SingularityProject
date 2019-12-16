@@ -18,16 +18,16 @@ def main(ref,que):
 
 	if choice1 == "1":
 		print("Calling Bowtie aligner...")
-		subprocess.check_call([os.getcwd()+'/bowtiescript.sh', ref, que])
+		subprocess.check_call([os.getcwd()+'Bowtie/bowtiescript.sh', ref, que])
 	elif choice1 == "2":
-		print("Calling Last aligner...")
-
+	        print("Calling Last aligner...")
+                subprocess.check_call([os.getcwd()+ 'Last/lastscript.sh', ref, que])
 	print("---Alignment finished---")
 	print("---Starting variant caller---")
 
 	if choice2 == "1":
 		print("Calling Lofreq...")
-		subprocess.check_call([os.getcwd()+'/lofreq.sh', ref, sortedbam])
+		subprocess.check_call([os.getcwd()+'Lofreq/lofreq.sh', ref, sortedbam])
 	elif choice2 == "2":
 		print("Calling VirVarSeq...")
 
